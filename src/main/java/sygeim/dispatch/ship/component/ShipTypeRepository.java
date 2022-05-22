@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ShipTypeRepository {
     Optional<List<ShipType>> findAll();
 
-    Optional<ShipType> findById();
+    Optional<ShipType> findById(Long id);
 
     ShipType create(ShipTypeCreateCommand shipTypeCreateCommand);
 

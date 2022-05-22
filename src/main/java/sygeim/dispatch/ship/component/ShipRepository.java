@@ -15,7 +15,7 @@ public interface ShipRepository {
 
     Optional<List<Ship>> findAll();
 
-    Optional<Ship> findByRegistration();
+    Optional<Ship> findByRegistration(String registration);
 
     Ship create(ShipCreateCommand shipCreateCommand);
 
