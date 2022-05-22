@@ -1,8 +1,11 @@
 package sygeim.dispatch.ship.component.domain;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.persistence.*;
 
 @Entity
+@Schema(description = "A ship type", name = "ShipType")
 public class ShipType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

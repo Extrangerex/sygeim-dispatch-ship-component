@@ -8,17 +8,17 @@ import javax.validation.constraints.NotNull;
 @Introspected
 public class ShipCreateCommand {
     @NotNull
-    private String ship;
+    private String registration;
 
     @NotNull
     private ShipType shipType;
 
-    public String getShip() {
-        return ship;
+    public String getRegistration() {
+        return registration;
     }
 
-    public void setShip(String ship) {
-        this.ship = ship;
+    public void setRegistration(String registration) {
+        this.registration = registration;
     }
 
     public ShipType getShipType() {

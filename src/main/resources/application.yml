@@ -1,6 +1,11 @@
 micronaut:
   application:
     name: sygeimDispatchShipComponent
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:/META-INF/swagger
+        mapping: /swagger/**
 netty:
   default:
     allocator:

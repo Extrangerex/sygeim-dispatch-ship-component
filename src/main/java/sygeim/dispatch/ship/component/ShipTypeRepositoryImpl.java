@@ -46,11 +46,23 @@ public class ShipTypeRepositoryImpl implements ShipTypeRepository {
 
     @Override
     public int update(Long id, ShipTypeUpdateCommand shipTypeUpdateCommand) {
-        return 0;
+        ShipType shipType = entityManager.find(ShipType.class, id);
+
+        shipType.setName(shipTypeUpdateCommand.getName() == null ? shipType.getName() : shipTypeUpdateCommand.getName());
+
+        entityManager.persist(shipType);
+
+        return 1;
     }
 
     @Override
     public int delete(Long id) {
-        return 0;
+        ShipType shipType = entityManager.find(ShipType.class, id);
+
+        shipType.setDeleted(true);
+
+        entityManager.persist(shipType);
+
+        return 1;
     }
 }
