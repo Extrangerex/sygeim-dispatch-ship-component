@@ -3,6 +3,7 @@ package sygeim.dispatch.ship.component;
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.transaction.annotation.ReadOnly;
 import io.micronaut.transaction.annotation.TransactionalAdvice;
+import jakarta.inject.Singleton;
 import sygeim.dispatch.ship.component.commands.ShipTypeCreateCommand;
 import sygeim.dispatch.ship.component.commands.ShipTypeUpdateCommand;
 import sygeim.dispatch.ship.component.domain.ShipType;
@@ -11,7 +12,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-@Introspected
+@Singleton
 public class ShipTypeRepositoryImpl implements ShipTypeRepository {
     private final EntityManager entityManager;
 

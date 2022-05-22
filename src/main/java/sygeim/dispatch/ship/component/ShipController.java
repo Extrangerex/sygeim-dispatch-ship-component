@@ -5,6 +5,7 @@ import sygeim.dispatch.ship.component.commands.ShipCreateCommand;
 import sygeim.dispatch.ship.component.commands.ShipUpdateCommand;
 import sygeim.dispatch.ship.component.domain.Ship;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller("/ship")
@@ -13,6 +14,11 @@ public class ShipController {
 
     public ShipController(ShipRepositoryImpl shipRepository) {
         this.shipRepository = shipRepository;
+    }
+
+    @Get("/")
+    public Optional<List<Ship>> get() {
+        return shipRepository.findAll();
     }
 
     @Get("/{registration}")

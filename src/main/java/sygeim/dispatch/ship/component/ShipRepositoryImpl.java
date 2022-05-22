@@ -1,5 +1,7 @@
 package sygeim.dispatch.ship.component;
 
+import io.micronaut.transaction.annotation.ReadOnly;
+import io.micronaut.transaction.annotation.TransactionalAdvice;
 import jakarta.inject.Singleton;
 import sygeim.dispatch.ship.component.commands.ShipCreateCommand;
 import sygeim.dispatch.ship.component.commands.ShipUpdateCommand;
@@ -20,16 +22,19 @@ public class ShipRepositoryImpl implements ShipRepository {
 
 
     @Override
+    @ReadOnly
     public Optional<List<Ship>> findAll() {
         return Optional.ofNullable(entityManager.createQuery("select s from Ship s", Ship.class).getResultList());
     }
 
     @Override
+    @ReadOnly
     public Optional<Ship> findByRegistration(String registration) {
         return Optional.ofNullable(entityManager.find(Ship.class, registration));
     }
 
     @Override
+    @TransactionalAdvice
     public Ship create(ShipCreateCommand shipCreateCommand) {
         Ship ship = new Ship();
         ship.setRegistration(shipCreateCommand.getRegistration());
@@ -41,6 +46,7 @@ public class ShipRepositoryImpl implements ShipRepository {
     }
 
     @Override
+    @TransactionalAdvice
     public int update(String registration, ShipUpdateCommand shipUpdateCommand) {
         Ship ship = entityManager.find(Ship.class, registration);
         ship.setShipType(shipUpdateCommand.getShipType() != null ? shipUpdateCommand.getShipType() : ship.getShipType());
@@ -51,6 +57,7 @@ public class ShipRepositoryImpl implements ShipRepository {
     }
 
     @Override
+    @TransactionalAdvice
     public int delete(String registration) {
         Ship ship = entityManager.find(Ship.class, registration);
         ship.setDeleted(true);
